@@ -1,48 +1,44 @@
 class Solution {
-    public:
-    
-        void findsum(vector<int>& nums, int idx,
-                     vector<vector<int>>& ans,int target) {
-    
-            int s=idx;
-            int e=nums.size()-1;
-            while(s<e){
+public:
+    vector<vector<int>> ans;
+    void findTriplet(int idx, int target, int s,vector<int>& nums) {
+        int e = nums.size() - 1;
+
+        while (s < e) {
+            while (s < e && nums[s] + nums[e] > target) {
+                e--;
+            }
+            while (s < e && nums[s] + nums[e] < target) {
+                s++;
+            }
+            if (s < e && nums[s] + nums[e] == target) {
                 vector<int> temp;
-                while(s<e && nums[s]+nums[e]<target){
+                temp.push_back(nums[idx]);
+                temp.push_back(nums[s]);
+                temp.push_back(nums[e]);
+                ans.push_back(temp);
+                int temp1 = nums[s];
+                int temp2 = nums[e];
+                while (s < e && nums[s] == temp1) {
                     s++;
                 }
-                while(s<e && nums[s]+nums[e]>target){
+                while (s < e && nums[e] == temp2) {
                     e--;
                 }
-                if(s<e && nums[s]+nums[e]==target){
-                    temp.push_back(nums[idx-1]);
-                    temp.push_back(nums[s]);
-                    temp.push_back(nums[e]);
-                    ans.push_back(temp);
-                    int it=nums[s];
-                    int jt=nums[e];
-                    while(s<e && nums[s]==it){
-                        s++;
-                    }
-                    while(s<e && nums[e]==jt){
-                        e--;
-                    }
-    
-                }
             }
-            
         }
-        vector<vector<int>> threeSum(vector<int>& nums) {
-            sort(nums.begin(),nums.end());
-            vector<vector<int>> ans;
-            for(int i=0;i<=nums.size()-3;){
-                int tar=(-1)*(nums[i]);
-                findsum(nums,i+1,ans,tar);
-                int temp=nums[i];
-                while(i<=nums.size()-3 && nums[i]==temp){
-                    i++;
-                }
+    }
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int i = 0;
+        while (i < nums.size()) {
+            int ele = nums[i];
+            int target = ele * (-1);
+            findTriplet(i, target, i + 1,nums);
+            while (i < nums.size() && nums[i] == ele) {
+                i++;
             }
-            return ans;
         }
-    };
+        return ans;
+    }
+};
