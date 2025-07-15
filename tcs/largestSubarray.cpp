@@ -24,3 +24,32 @@ class Solution {
         return len;
     }
 };
+
+
+// ---------------------------------------------------------------
+
+
+class Solution {
+  public:
+    int longestSubarray(vector<int>& arr, int k) {
+        // code here
+        int i=0;
+        
+        int longest=0;
+        int prefSum=0;
+        
+        unordered_map<int,int> mp;
+        mp[0]=-1;
+        while(i<arr.size()){
+            prefSum+=arr[i];
+            if(mp.find(prefSum-(k))!=mp.end()){
+                longest=max(longest,i-mp[prefSum-(k)]);
+            }
+            if(mp.find(prefSum)==mp.end()){
+                mp[prefSum]=i;
+            }
+            i++;
+        }
+        return longest;
+    }
+};
