@@ -10,3 +10,30 @@ int findPower(long long a,long long b){
     }
     return result;
 }
+
+
+
+// -------------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    typedef long long ll;
+    double findpow(double x,ll n){
+        if(n==0){
+            return 1;
+        }
+        if(n<0){
+            return findpow(1/x,(ll)(-(ll)(n)));
+        }
+        double halfresult=(double)findpow(x,n/2);
+        double result=(double)(halfresult*halfresult);
+        if(n&1==1){
+            result=(double)result*x;
+        }
+        return result;
+    }
+    double myPow(double x, int n) {
+        return findpow(x,(ll)(n));
+    }
+};
+
