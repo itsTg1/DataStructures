@@ -31,3 +31,30 @@ class Solution {
             return maxSum;
         }
     };
+
+
+// ---------------------------------------------------------------------------------------------------
+
+
+
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int presum=1;
+        int suffixsum=1;
+        int ans=INT_MIN;
+        for(int i=0;i<nums.size();i++){
+            if(presum==0){
+                presum=1;
+            }
+            if(suffixsum==0){
+                suffixsum=1;
+            }
+            presum=presum*nums[i];
+      
+            suffixsum=suffixsum*nums[nums.size()-i-1];
+            ans=max(ans,max(presum,suffixsum));
+        }
+        return ans;
+    }
+};
