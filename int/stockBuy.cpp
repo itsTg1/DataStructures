@@ -1,3 +1,5 @@
+// https://www.geeksforgeeks.org/problems/stock-buy-and-sell-1587115621/1
+
 class Solution {
   public:
     int stockBuySell(vector<int> &arr) {
