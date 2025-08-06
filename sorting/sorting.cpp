@@ -53,26 +53,8 @@ void insertionSort(vector<int> &arr){
         arr[j+1]=temp;
     }
 }
-void bubbleSort(vector<int> &arr){
-    // swap adjacent elements
-    int n=arr.size();
-    for(int i=n-1;i>=0;i--){
-        for(int j=0;j<=i-1;j++){
-            if(arr[j]>arr[j+1]){
-                swap(arr[j],arr[j+1]);
-            }
-        }
-    }
-}
-void selectionSort(vector<int> &arr){
-    for(int i=0;i<arr.size();i++){
-        for(int j=i+1;j<arr.size();j++){
-            if(arr[i]>arr[j]){
-                swap(arr[i],arr[j]);
-            }
-        }
-    }
-}
+
+
 int main() {
     vector<int> arr={8,1,3,10,6};
     int e=arr.size()-1;
