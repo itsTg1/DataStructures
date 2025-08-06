@@ -1,40 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-int findPiv(vector<int> &arr,int s,int e){
-    int cnt=0;
-    int pivot=arr[s];
-    for(int i=s;i<=e;i++){
-        if(arr[i]<pivot){
-            cnt++;
-        }
-    }
-    int piv=s+cnt;
-    swap(arr[s],arr[piv]);
-    int i=s;
-    int j=e;
-    while(i<piv && j>piv){
-        while(arr[i]<=arr[piv]){
-            i++;
-        }
-        while(arr[j]>arr[piv]){
-            j--;
-        }
-        if(i<piv && j>piv){
-            swap(arr[i],arr[j]);
-            i++;
-            j++;
-        }
-    }
-    return piv;
-}
-void quickSort(vector<int> &arr,int s,int e){
-    if(s>=e){
-        return ;
-    }
-    int pivIdx=findPiv(arr,s,e);
-    quickSort(arr,s,pivIdx-1);
-    quickSort(arr,pivIdx+1,e);
-}
+
 void merge(vector<int> &arr,int s,int mid,int e){
     vector<int> temp(e-s+1);
     int i=s;
