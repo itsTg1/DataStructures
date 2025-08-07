@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // galti yaha hogi
     int findmin(vector<int>& nums){
         int s=0;
         int e=nums.size()-1;
