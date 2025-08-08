@@ -72,3 +72,34 @@ class Solution {
       
     }
 };
+
+
+
+
+// approach - 3
+
+class Solution {
+  public:
+    void mergeArrays(vector<int>& a, vector<int>& b) {
+        // code here
+        int i=a.size()-1;
+        int j=0;
+        while(i>=0 && j<b.size()){
+            if(a[i]==b[j]){
+                i--;
+                j++;
+            }
+            else if(a[i]<b[j]){
+                j++;
+            }
+            else if(a[i]>b[j]){
+                swap(a[i],b[j]);
+                i--;
+                j++;
+            }
+        }
+        sort(a.begin(),a.end());
+        sort(b.begin(),b.end());
+        
+    }
+};
