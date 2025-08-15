@@ -14,3 +14,26 @@ class Solution {
         return profit;
     }
 };
+
+// approach -2
+
+// leetcode- 121
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int minim=prices[0];
+        int ans=0;
+        for(int i=0;i<prices.size();i++){
+            if(prices[i]<minim){
+                minim=prices[i];
+                continue;
+            }
+            else{
+                int curr=prices[i]-minim;
+                ans=max(ans,curr);
+            }
+        }
+        return ans;
+    }
+};
