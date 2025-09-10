@@ -1,4 +1,4 @@
-
+// this finds second middle in case of even linked list
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {

@@ -1,4 +1,4 @@
-// leetcode- 142
+
 class Solution {
 public:
     bool checkLoop(ListNode* head){
@@ -14,13 +14,22 @@ public:
         return false;
     }
     ListNode* findStart(ListNode* head){
-        map<ListNode*,bool> mp;
-        ListNode* temp=head;
-        while(mp.find(temp)==mp.end()){
-            mp[temp]=1;
-            temp=temp->next;
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast){
+                break;
+            }
         }
-        return temp;
+        ListNode* start=head;
+        while(start!=slow){
+            slow=slow->next;
+            start=start->next;
+        }
+        return slow;
+
     }
     ListNode *detectCycle(ListNode *head) {
         if(head==NULL){
@@ -32,6 +41,3 @@ public:
         return NULL;
     }
 };
-
-// ------------------------------------------------**-------------------------------
-
