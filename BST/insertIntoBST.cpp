@@ -39,3 +39,39 @@ public:
 
     }
 };
+
+
+// --------------------------------------------------------------------------------------------------
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    
+    TreeNode* insertIntoBST(TreeNode* head, int val) {
+        if(head==NULL){
+            
+            TreeNode* Nod=new TreeNode(val);
+            
+            return Nod;
+        }
+        if(val>head->val){
+            head->right=insertIntoBST(head->right,val);
+        }
+        else if(head->val>val){
+            head->left=insertIntoBST(head->left,val);
+        }
+        return head;
+    }
+
+   
+};
