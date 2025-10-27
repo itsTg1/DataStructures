@@ -66,3 +66,75 @@ public:
         return result;
     }
 };
+
+
+
+// --------------------------******------------------------------------------------------------------
+
+
+
+// gfg
+
+class Solution {
+
+  public:
+    unordered_map<Node*,Node*> mp;
+    unordered_map<Node*,bool> visited;
+    Node* findNode(Node* root,int target){
+        if(root==NULL){
+            return NULL;
+        }
+        if(root->data==target){
+            return root;
+        }
+        Node* leftAns=findNode(root->left,target);
+        Node* rightAns=findNode(root->right,target);
+        
+        if(leftAns){
+            return leftAns;
+        }
+        if(rightAns){
+            return rightAns;
+        }
+        return NULL;
+    }
+    void storeParents(Node* root,Node* parent){
+        if(root==NULL){
+            return ;
+        }
+        mp[root]=parent;
+        storeParents(root->left,root);
+        storeParents(root->right,root);
+        return ;
+    }
+    void findAllNodes(Node* root,int dis,int k,vector<int> &ans){
+        if(root==NULL || visited[root]){
+            return ;
+        }
+        if(dis==k){
+            ans.push_back(root->data);
+            return ;
+        }
+        visited[root]=true;
+        findAllNodes(mp[root],dis+1,k,ans);
+        findAllNodes(root->left,dis+1,k,ans);
+        findAllNodes(root->right,dis+1,k,ans);
+        return ;
+    }
+    vector<int> KDistanceNodes(Node* root, int target, int k) {
+        // return the sorted vector of all nodes at k dist
+        vector<int> ans;
+        if(root==NULL){
+            return ans;
+        }
+        storeParents(root,NULL);
+        Node* newRoot=findNode(root,target);
+     
+        if(newRoot==NULL){
+            return ans;
+        }
+        findAllNodes(newRoot,0,k,ans);
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};
