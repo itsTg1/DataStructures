@@ -33,3 +33,30 @@ int main() {
         st.pop();
     }
 }
+
+
+// --------------------------****-----------------------------------------------------------------------
+
+class Solution {
+  public:
+    void insertSorted(stack<int> &st,int ele){
+        if(st.empty() || st.top()<=ele){
+            st.push(ele);
+            return ;
+        }
+        int topEle=st.top();
+        st.pop();
+        insertSorted(st,ele);
+        st.push(topEle);
+    }
+    void sortStack(stack<int> &st) {
+        // code here
+        if(st.empty()){
+            return ;
+        }
+        int ele=st.top();
+        st.pop();
+        sortStack(st);
+        insertSorted(st,ele);
+    }
+};
