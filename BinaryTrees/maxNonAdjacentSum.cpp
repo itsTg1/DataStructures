@@ -6,12 +6,14 @@ class Solution {
         if(root==NULL){
             return {0,0};
         }
-        pair<int,int> left=getSum(root->left);
-        pair<int,int> right=getSum(root->right);
-        pair<int,int> currResult;
-        currResult.first=root->data +left.second+right.second;
-        currResult.second=max(left.first,left.second)+max(right.first,right.second);
-        return currResult;
+        pair<int,int> leftAns=getSum(root->left);
+        pair<int,int> rightAns=getSum(root->right);
+        pair<int,int> result;
+        // if we include root then we have to exclude its childs
+        result.first=root->data+leftAns.second+rightAns.second;
+        // if we exclude root then we can include or exclude their child nodes
+        result.second=max(leftAns.first,leftAns.second)+max(rightAns.first,rightAns.second);
+        return result;
     }
     int getMaxSum(Node *root) {
         // code here
