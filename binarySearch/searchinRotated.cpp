@@ -47,3 +47,58 @@ public:
         return binarysearch(nums,index,nums.size()-1,target);
     }
 };
+
+
+// ----------------------------------------------------------------------------
+
+
+class Solution {
+  public:
+    int findMin(vector<int> &arr){
+        int s=0;
+        int ans=-1;
+        int e=arr.size()-1;
+        while(s<=e){
+            int mid=s+(e-s)/2;
+            if(arr[mid]<=arr[arr.size()-1]){
+                ans=mid;
+                e=mid-1;
+            }
+            else{
+                s=mid+1;
+            }
+        }
+        return ans;
+    }
+    int binarySearch(vector<int> &arr,int s,int e,int target){
+        int ans=-1;
+        int st=s;
+        int en=e;
+        while(st<=en){
+            int mid=st+(en-st)/2;
+            if(arr[mid]==target){
+                return mid;
+            }
+            else if(arr[mid]<target){
+                st=mid+1;
+            }
+            else{
+                en=mid-1;
+            }
+        }
+        return ans;
+    }
+    int search(vector<int>& arr, int key) {
+        // Code Here
+        int minIdx=findMin(arr);
+        if(arr[minIdx]==key){
+            return minIdx;
+        }
+        int ans1=binarySearch(arr,0,minIdx-1,key);
+        if(ans1!=-1){
+            return ans1;
+        }
+        return binarySearch(arr,minIdx,arr.size()-1,key);
+        
+    }
+};
