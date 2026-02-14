@@ -43,3 +43,68 @@ class Solution {
         return dummy->next;
     }
 };
+
+// --------------------------------------------------------------------------------
+
+// leetcode - 21
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    int siz=0;
+    public ListNode insertNode(ListNode temp,ListNode dummy,ListNode head){
+        if(dummy==null){
+            dummy=temp;
+            head=temp;
+            siz++;
+            return dummy;
+        }
+        dummy.next=temp;
+        dummy=temp;
+        siz++;
+        return dummy;
+    }
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode head=null;
+        ListNode dummy=null;
+        ListNode temp1=list1;
+        ListNode temp2=list2;
+        while(temp1!=null && temp2!=null){
+            if(temp1.val<=temp2.val){
+                dummy=insertNode(temp1,dummy,head);
+                temp1=temp1.next;
+            }
+            else{
+                dummy=insertNode(temp2,dummy,head);
+                temp2=temp2.next;
+            }
+            if(siz==1){
+                head=dummy;
+            }
+        }
+        while(temp1!=null){
+            dummy=insertNode(temp1,dummy,head);
+            temp1=temp1.next;
+            if(siz==1){
+                head=dummy;
+            }
+        }
+        while(temp2!=null){
+            dummy=insertNode(temp2,dummy,head);
+            temp2=temp2.next;
+            if(siz==1){
+                head=dummy;
+            }
+        }
+        return head;
+    }
+}
