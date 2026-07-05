@@ -1,4 +1,7 @@
-// find minimum 
+// find minimum element 
+// No of passes (n-1)
+// outer loop run equal to no. passes.
+ 
 
 for(int i=0;i<nums.size()-1;i++){
     int min=i;

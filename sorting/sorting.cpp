@@ -42,6 +42,7 @@ void mergeSort(vector<int> &arr,int s,int e){
     mergeSort(arr,mid+1,e);
     merge(arr,s,mid,e);
 }
+// assume first element sorted. So start from idx2
 void insertionSort(vector<int> &arr){
     for(int i=1;i<arr.size();i++){
         int temp=arr[i];

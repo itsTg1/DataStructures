@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //  Jenny lecture
     int findPivot(vector<int>& nums, int s, int e) {
         int pivot = nums[s];
         int l = s;
